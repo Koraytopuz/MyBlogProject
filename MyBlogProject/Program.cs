@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using MyBlogProject.Business.Interfaces;
+using MyBlogProject.Business.Services;
 using MyBlogProject.DataAccess.Context;
 using MyBlogProject.DataAccess.Repositories.Implementations;
 
@@ -10,7 +11,9 @@ builder.Services.AddDbContext<MyBlogDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

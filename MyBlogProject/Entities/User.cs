@@ -7,7 +7,7 @@ namespace MyBlogProject.Entities
         public int Id { get; set; }
         public string UserName { get; set; }
         public string Mail { get; set; }
-        public ICollection<Post> Posts { get; set; }
+        public Post Posts { get; set; }
     }
 }
 

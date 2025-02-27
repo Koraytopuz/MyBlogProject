@@ -7,5 +7,7 @@ namespace MyBlogProject.Business.Services
         Task<IEnumerable<User>> GetAllUsersAsync();
         Task<User> GetUserByIdAsync(int id);
         Task CreateUserAsync(User user);
+        Task DeleteUserAsync(int id);
+        Task UpdateUserAsync(User user);
     }
 }
