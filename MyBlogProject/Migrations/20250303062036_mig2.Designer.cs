@@ -12,8 +12,8 @@ using MyBlogProject.DataAccess.Context;
 namespace MyBlogProject.Migrations
 {
     [DbContext(typeof(MyBlogDbContext))]
-    [Migration("20250227131909_mig1")]
-    partial class mig1
+    [Migration("20250303062036_mig2")]
+    partial class mig2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,6 +65,10 @@ namespace MyBlogProject.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -103,7 +107,7 @@ namespace MyBlogProject.Migrations
             modelBuilder.Entity("MyBlogProject.Entities.Comment", b =>
                 {
                     b.HasOne("MyBlogProject.Entities.Post", "Post")
-                        .WithMany("Comments")
+                        .WithMany()
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -120,11 +124,6 @@ namespace MyBlogProject.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("MyBlogProject.Entities.Post", b =>
-                {
-                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.User", b =>

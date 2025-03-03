@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyBlogProject.DataAccess.Context;
 
@@ -11,9 +12,11 @@ using MyBlogProject.DataAccess.Context;
 namespace MyBlogProject.Migrations
 {
     [DbContext(typeof(MyBlogDbContext))]
-    partial class MyBlogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250303053530_mig1")]
+    partial class mig1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,8 +45,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PostId")
-                        .IsUnique();
+                    b.HasIndex("PostId");
 
                     b.ToTable("Comments");
                 });
@@ -72,8 +74,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -102,8 +103,8 @@ namespace MyBlogProject.Migrations
             modelBuilder.Entity("MyBlogProject.Entities.Comment", b =>
                 {
                     b.HasOne("MyBlogProject.Entities.Post", "Post")
-                        .WithOne("Comments")
-                        .HasForeignKey("MyBlogProject.Entities.Comment", "PostId")
+                        .WithMany()
+                        .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -113,24 +114,17 @@ namespace MyBlogProject.Migrations
             modelBuilder.Entity("MyBlogProject.Entities.Post", b =>
                 {
                     b.HasOne("MyBlogProject.Entities.User", "User")
-                        .WithOne("Posts")
-                        .HasForeignKey("MyBlogProject.Entities.Post", "UserId")
+                        .WithMany("Posts")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("MyBlogProject.Entities.Post", b =>
-                {
-                    b.Navigation("Comments")
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("MyBlogProject.Entities.User", b =>
                 {
-                    b.Navigation("Posts")
-                        .IsRequired();
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,4 @@
-﻿namespace MyBlogProject.Business.Interfaces
+﻿namespace MyBlogProject.Business.Repositories
 {
     public interface IGenericRepository<T> where T : class
     {

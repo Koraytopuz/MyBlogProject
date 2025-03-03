@@ -1,15 +1,14 @@
-﻿namespace MyBlogProject.Entities
+﻿using MyBlogProject.WebApı.Dtos.CommentDtos;
+
+namespace MyBlogProject.WebApı.Dtos.PostDtos
 {
-    public class Post
+    public class PostWithCommentsDto
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public string ImageUrl { get; set; }
         public DateTime CreatedAt { get; set; }
-
-        public int UserId { get; set; }  // Foreign Key
-        public User User { get; set; }   // Navigasyon özelliği
+        public List<CommentDto> Comments { get; set; }
     }
-
 }
