@@ -7,6 +7,8 @@ using AutoMapper;
 using AutoMapper.Configuration;
 using MyBlogProject.DataAccess.Repositories.Implementations;
 using MyBlogProject.Business.Repositories;
+using MyBlogProject.Business.Interfaces.Repositories;
+using MyBlogProject.DataAccess.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

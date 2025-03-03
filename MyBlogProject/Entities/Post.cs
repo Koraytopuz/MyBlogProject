@@ -5,11 +5,14 @@
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
-        public string ImageUrl { get; set; }
         public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public string ImageUrl { get; set; }
 
-        public int UserId { get; set; }  // Foreign Key
-        public User User { get; set; }   // Navigasyon özelliği
+
+        // Foreign Key to User
+        public int UserId { get; set; }  // Buradaki UserId alanı, User tablosu ile ilişkilidir.
+        public User User { get; set; }  // User tablosu ile ilişkili navigasyon özelliği
     }
 
 }

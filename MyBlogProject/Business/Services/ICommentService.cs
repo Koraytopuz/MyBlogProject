@@ -1,14 +1,16 @@
-﻿using MyBlogProject.WebApı.Dtos.CommentDtos;
+﻿using MyBlogProject.Entities;
+using MyBlogProject.WebApı.Dtos.CommentDtos;
 
 namespace MyBlogProject.Business.Services
 {
     public interface ICommentService
     {
-        Task<IEnumerable<CommentDto>> GetAllCommentsAsync();
-        Task<CommentDto> GetCommentByIdAsync(int id);
-        Task CreateCommentAsync(CommentDto commentDto);
-        Task UpdateCommentAsync(CommentDto commentDto);
-        Task DeleteCommentAsync(int id);
-        Task<IEnumerable<CommentDto>> GetCommentsByPostIdAsync(int postId);
+        Task<IEnumerable<Comment>> GetAllAsync();
+        Task<Comment> GetByIdAsync(int id);
+        Task AddAsync(Comment comment);
+        Task UpdateAsync(Comment comment);
+        Task DeleteAsync(int id);
+        Task<IEnumerable<Comment>> GetCommentsByPostIdAsync(int postId);
+        Task<IEnumerable<Comment>> GetCommentsByUserIdAsync(int userId);
     }
 }

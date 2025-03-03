@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyBlogProject.Business.Services;
+using MyBlogProject.Entities;
 using MyBlogProject.WebApı.Dtos.CommentDtos;
 
 namespace MyBlogProject.WebApı.Controllers
@@ -16,65 +17,61 @@ namespace MyBlogProject.WebApı.Controllers
             _commentService = commentService;
         }
 
-        /// <summary>
-        /// Tüm yorumları getirir.
-        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var comments = await _commentService.GetAllCommentsAsync();
+            var comments = await _commentService.GetAllAsync();
             return Ok(comments);
         }
 
-        /// <summary>
-        /// ID'ye göre yorum getirir.
-        /// </summary>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var comment = await _commentService.GetCommentByIdAsync(id);
-            return comment == null ? NotFound() : Ok(comment);
+            var comment = await _commentService.GetByIdAsync(id);
+            if (comment == null)
+                return NotFound();
+            return Ok(comment);
         }
 
-        /// <summary>
-        /// Yeni bir yorum oluşturur.
-        /// </summary>
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CommentDto commentDto)
+        public async Task<IActionResult> Create([FromBody] Comment comment)
         {
-            await _commentService.CreateCommentAsync(commentDto);
-            return StatusCode(201);  // Created
+            if (comment == null)
+                return BadRequest("Comment is null");
+
+            await _commentService.AddAsync(comment);
+            return CreatedAtAction(nameof(GetById), new { id = comment.Id }, comment);
         }
 
-        /// <summary>
-        /// Yorum günceller.
-        /// </summary>
-        [HttpPut]
-        public async Task<IActionResult> Update([FromBody] CommentDto commentDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] Comment comment)
         {
-            await _commentService.UpdateCommentAsync(commentDto);
-            return Ok(commentDto);
+            if (id != comment.Id)
+                return BadRequest("Comment ID mismatch");
+
+            await _commentService.UpdateAsync(comment);
+            return NoContent();
         }
 
-        /// <summary>
-        /// Yorum siler.
-        /// </summary>
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _commentService.DeleteCommentAsync(id);
-            return NoContent();  // 204 No Content
+            await _commentService.DeleteAsync(id);
+            return NoContent();
         }
 
-        /// <summary>
-        /// Belirli bir postun yorumlarını getirir.
-        /// </summary>
         [HttpGet("post/{postId}")]
-        public async Task<IActionResult> GetByPostId(int postId)
+        public async Task<IActionResult> GetCommentsByPostId(int postId)
         {
             var comments = await _commentService.GetCommentsByPostIdAsync(postId);
             return Ok(comments);
         }
+
+        [HttpGet("user/{userId}")]
+        public async Task<IActionResult> GetCommentsByUserId(int userId)
+        {
+            var comments = await _commentService.GetCommentsByUserIdAsync(userId);
+            return Ok(comments);
+        }
     }
 }
-

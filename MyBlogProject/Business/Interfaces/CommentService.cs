@@ -10,51 +10,52 @@ namespace MyBlogProject.Business.Interfaces
     public class CommentService : ICommentService
     {
         private readonly ICommentRepository _commentRepository;
-        private readonly IMapper _mapper;
 
-        public CommentService(ICommentRepository commentRepository, IMapper mapper)
+        public CommentService(ICommentRepository commentRepository)
         {
             _commentRepository = commentRepository;
-            _mapper = mapper;
         }
 
-        public async Task<IEnumerable<CommentDto>> GetAllCommentsAsync()
+        public async Task<IEnumerable<Comment>> GetAllAsync()
         {
-            var comments = await _commentRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<CommentDto>>(comments);
+            return await _commentRepository.GetAllAsync();
         }
 
-        public async Task<CommentDto> GetCommentByIdAsync(int id)
+        public async Task<Comment> GetByIdAsync(int id)
         {
-            var comment = await _commentRepository.GetByIdAsync(id);
-            return _mapper.Map<CommentDto>(comment);
+            return await _commentRepository.GetByIdAsync(id);
         }
 
-        public async Task CreateCommentAsync(CommentDto commentDto)
+        public async Task AddAsync(Comment comment)
         {
-            var comment = _mapper.Map<Comment>(commentDto);
             await _commentRepository.AddAsync(comment);
+            await _commentRepository.SaveAsync();
         }
 
-        public async Task UpdateCommentAsync(CommentDto commentDto)
+        public async Task UpdateAsync(Comment comment)
         {
-            var comment = _mapper.Map<Comment>(commentDto);
-            await _commentRepository.UpdateAsync(comment);
+            _commentRepository.UpdateAsync(comment);
+            await _commentRepository.SaveAsync();
         }
 
-        public async Task DeleteCommentAsync(int id)
+        public async Task DeleteAsync(int id)
         {
             var comment = await _commentRepository.GetByIdAsync(id);
             if (comment != null)
             {
                 await _commentRepository.DeleteAsync(comment);
+                await _commentRepository.SaveAsync();
             }
         }
 
-        public async Task<IEnumerable<CommentDto>> GetCommentsByPostIdAsync(int postId)
+        public async Task<IEnumerable<Comment>> GetCommentsByPostIdAsync(int postId)
         {
-            var comments = await _commentRepository.GetCommentsByPostIdAsync(postId);
-            return _mapper.Map<IEnumerable<CommentDto>>(comments);
+            return await _commentRepository.GetCommentsByPostIdAsync(postId);
+        }
+
+        public async Task<IEnumerable<Comment>> GetCommentsByUserIdAsync(int userId)
+        {
+            return await _commentRepository.GetCommentsByUserIdAsync(userId);
         }
     }
 }

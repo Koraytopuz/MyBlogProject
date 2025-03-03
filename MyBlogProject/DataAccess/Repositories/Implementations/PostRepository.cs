@@ -17,6 +17,9 @@ namespace MyBlogProject.DataAccess.Repositories.Implementations
 
         public async Task AddAsync(Post post)
         {
+            post.CreatedAt = DateTime.UtcNow;
+
+            // Burada manuel olarak Id değeri atanmamalı, SQL Server otomatik olarak arttıracak.
             await _myBlogDbContext.Posts.AddAsync(post);
             await _myBlogDbContext.SaveChangesAsync();
 
