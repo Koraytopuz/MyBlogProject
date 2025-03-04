@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Admin.styles.css" asp-append-version="true" />
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/corona-admin/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/corona-admin/assets/vendors/css/vendor.bundle.base.css">
+    <!-- End plugin css for this page -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="~/corona-admin/assets/css/style.css">
+    <link rel="shortcut icon" href="~/corona-admin/assets/images/favicon.png" />
+
 </head>
 <body>
     <header>
@@ -45,5 +53,15 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <!-- plugins:js -->
+    <script src="~/corona-admin/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- End inject -->
+    <!-- Custom js for this page -->
+    <script src="~/corona-admin/assets/js/off-canvas.js"></script>
+    <script src="~/corona-admin/assets/js/hoverable-collapse.js"></script>
+    <script src="~/corona-admin/assets/js/misc.js"></script>
+    <script src="~/corona-admin/assets/js/settings.js"></script>
+    <script src="~/corona-admin/assets/js/todolist.js"></script>
+
 </body>
 </html>

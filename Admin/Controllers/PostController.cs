@@ -35,22 +35,23 @@ namespace MyBlogProject.WebApi.Controllers
         }
 
         // Create a new post
+
         [HttpPost]
         public async Task<IActionResult> CreatePost([FromBody] Post post)
         {
             if (post == null) return BadRequest();
 
-            var createdPost = await _postService.CreatePostAsync(post);
-            return CreatedAtAction(nameof(GetPost), new { id = createdPost.Id }, createdPost);
+            await _postService.CreatePostAsync(post);
+            return CreatedAtAction(nameof(GetPost), new { id = post.Id }, post);
         }
+
 
         // Update an existing post
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePost(int id, [FromBody] Post post)
         {
             if (id != post.Id) return BadRequest();
-            var updatedPost = await _postService.UpdatePostAsync(post);
-            if (updatedPost == null) return NotFound();
+            await _postService.UpdatePostAsync(post);
             return NoContent();
         }
 
@@ -58,9 +59,12 @@ namespace MyBlogProject.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePost(int id)
         {
-            var result = await _postService.DeletePostAsync(id);
-            if (!result) return NotFound();
+            var post = await _postService.GetPostByIdAsync(id);
+            if (post == null) return NotFound();
+
+            await _postService.DeletePostAsync(id);
             return NoContent();
         }
+
     }
 }
