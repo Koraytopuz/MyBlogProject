@@ -29,14 +29,15 @@ namespace MyBlogProject.DataAccess.Repositories
             return await _context.Comments.FindAsync(id);
         }
 
-        public async Task AddAsync(Comment entity)
+        public async Task AddAsync(Comment comment)
         {
-            await _context.Comments.AddAsync(entity);
+            await _context.Comments.AddAsync(comment);
         }
 
-        public async Task UpdateAsync(Comment entity)
+        public async Task UpdateAsync(Comment comment)
         {
-            _context.Comments.Update(entity);
+            _context.Comments.Update(comment);
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Comment entity)
@@ -60,15 +61,7 @@ namespace MyBlogProject.DataAccess.Repositories
             return await _context.Comments.Where(c => c.Id == userId).ToListAsync();
         }
 
-        // Eğer ID ile silme yapmak isterseniz (opsiyonel bir metod)
-        public async Task DeleteByIdAsync(int id)
-        {
-            var comment = await _context.Comments.FindAsync(id);
-            if (comment != null)
-            {
-                _context.Comments.Remove(comment);
-            }
-        }
+   
 
         Task<List<Comment>> IGenericRepository<Comment>.GetAllAsync()
         {

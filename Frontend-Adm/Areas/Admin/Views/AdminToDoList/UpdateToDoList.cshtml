@@ -1,0 +1,44 @@
+﻿@model ToDoListDto
+@{
+    ViewData["Title"] = "UpdateToDoList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+
+                <div class="card">
+                    <div class="card-body">
+
+                        <h4 class="card-title">Yapılacaklar Listesi Sayfası Veri Düzenleme Alanı </h4>
+                        <p class="card-subtitle mb-4">
+                            Yapılacaklar Listesi ait veri düzenlemelerini buradan yapabilirsiniz.İkonlarla ilgili listeye ikon listesi üzerinden ulaşabilirsiniz.
+                        </p>
+                        <form method="post">
+                            <input type="hidden" asp-for="ToDoListId" />
+                            <div class="form-group">
+                                <label for="exampleInputName">Yeni Görev Başlığı</label>
+                                <input type="text" class="form-control" id="exampleInputName" asp-for="Title" placeholder="Yeni Görev Başlığını Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUrl">Tarih</label>
+                                <input type="date" class="form-control" id="exampleInputUrl" asp-for="Date" placeholder="Tarihi Giriniz">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputIcon">Durum</label>
+                                <input type="text" class="form-control" id="exampleInputIcon" asp-for="Status" placeholder="Durum Bilgisini Giriniz">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Yapılacaklar Listesi Bilgisini Kaydet</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,18 @@
+﻿@{
+    // Layout = "_AdminLayout.cshtml";
+    
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    @await Component.InvokeAsync("_AdminHeaderComponentPartial")
+    <div class="wrapper">
+        @await Component.InvokeAsync("_AdminNavBarComponentPartial")
+        @await Component.InvokeAsync("_AdminSideBarComponentPartial")
+        @await Component.InvokeAsync("_AdminHomePageComponentPartial")
+        @await Component.InvokeAsync("_AdminScriptComponentPartial")
+        @await Component.InvokeAsync("_AdminFooterComponentPartial")
+    </div>
+</body>
+</html>

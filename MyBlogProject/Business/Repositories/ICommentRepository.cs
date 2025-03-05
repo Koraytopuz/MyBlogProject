@@ -17,13 +17,13 @@ namespace MyBlogProject.Business.Interfaces.Repositories
         Task<IEnumerable<Comment>> GetCommentsByPostIdAsync(int postId);
 
         // Yorum ekler
-        Task AddAsync(Comment entity);
+        Task AddAsync(Comment comment);
 
         // Yorum günceller
-        Task UpdateAsync(Comment entity);
+        Task UpdateAsync(Comment comment);
 
         // Yorum siler
-        Task DeleteAsync(Comment entity);
+        Task DeleteAsync(Comment comment);
 
         // Bir kullanıcının tüm yorumlarını getirir
         Task<IEnumerable<Comment>> GetCommentsByUserIdAsync(int userId);

@@ -1,0 +1,107 @@
+﻿@using MyBlogProject.WebApı.Dtos.ToDoListDtos
+@model List<ToDoListDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
+}
+
+
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Ana sayfa Görev Listesi Alanı </h4>
+
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Başlık</th>
+                                        <th>Açıklama</th>
+                                        <th>Sil</th>
+                                        <th>Güncelle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        count++;
+                                        <tr>
+                                            <td>@count</td>
+                                            <td>@item.Date</td>
+                                            <td>@item.Status</td>
+                                            <td><a href="/Admin/AdminToDoList/DeleteToDoList/@item.ToDoListId" class="btn btn-outline-danger">Sil </a></td>
+                                            <td><a href="/Admin/AdminToDoList/UpdateToDoList/@item.ToDoListId" class="btn btn-outline-success">Güncelle </a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <a href="/Admin/AdminToDoList/CreateToDoList/" class="btn btn-outline-primary">Yeni Görev Alanı Girişi </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@* 
+<div class="main-panel">
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+<div class="col-md-6">
+    <div class="card card-tasks">
+        <div class="card-header ">
+            <h4 class="page-title">Görevler</h4>
+        </div>
+        <div class="card-body ">
+            <div class="table-full-width">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Durum</th>
+                            <th>Görev</th>
+                            <th>Tarih</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tr>
+                                <td>@count</td>
+                                <td>@item.Status</td>
+                                <td>@item.Title</td>
+                                <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                                <td class="td-actions text-right">
+                                    <div class="form-button-action">
+                                        <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link btn-simple-primary">
+                                            <i class="la la-edit"></i>
+                                        </button>
+                                        <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
+                                            <i class="la la-times"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+</div>
+</div>
+*@

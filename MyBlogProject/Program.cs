@@ -32,6 +32,9 @@ builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
+builder.Services.AddScoped<IToDoListService, ToDoListService>();
+builder.Services.AddScoped<IToDoListRepository, ToDoListRepository>();
+
 
 
 builder.Services.AddControllers();

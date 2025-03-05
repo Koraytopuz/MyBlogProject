@@ -2,7 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // MVC'yi ekle
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddHttpClient();
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -15,6 +15,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
+
 
 app.UseEndpoints(endpoints =>
 {
