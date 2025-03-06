@@ -1,28 +1,24 @@
-﻿@using MyBlogProject.WebApı.Dtos.ToDoListDtos
-@model List<ToDoListDto>
-
+﻿@model List<UserDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    int count = 0;
+    int count = 0;  
 }
-
-    <div class="page-content">
+<div class="page-content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Ana sayfa Görev Listesi Alanı </h4>
+                        <h4 class="card-title">Ana sayfa Kullanıcı Listesi Alanı </h4>
 
                         <div class="table-responsive">
                             <table class="table mb-0">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Başlık</th>
-                                        <th>Açıklama</th>
-                                        <th>Durum</th>
+                                        <th>Kullanıcı Adı </th>
+                                        <th>Mail</th>
                                         <th>Sil</th>
                                         <th>Güncelle</th>
                                     </tr>
@@ -33,16 +29,15 @@
                                         count++;
                                         <tr>
                                             <td>@count</td>
-                                            <td>@item.Title</td>
-                                            <td>@item.Date</td>
-                                            <td>@item.Status</td>
-                                            <td><a href="/Admin/AdminToDoList/DeleteToDoList/@item.ToDoListId" class="btn btn-outline-danger">Sil </a></td>
-                                            <td><a href="/Admin/AdminToDoList/UpdateToDoList/@item.ToDoListId" class="btn btn-outline-success">Güncelle </a></td>
+                                            <td>@item.UserName</td>
+                                            <td>@item.Mail</td>
+                                            <td><a href="/Admin/AdminToDoList/DeleteUser/@item.Id" class="btn btn-outline-danger">Sil </a></td>
+                                            <td><a href="/Admin/AdminToDoList/UpdateUser/@item.Id" class="btn btn-outline-success">Güncelle </a></td>
                                         </tr>
                                     }
                                 </tbody>
                             </table>
-                            <a href="/Admin/AdminToDoList/CreateToDoList/" class="btn btn-outline-primary">Yeni Görev Alanı Girişi </a>
+                            <a href="/Admin/AdminToDoList/CreateUser/" class="btn btn-outline-primary">Yeni Kullanıcı Girişi </a>
                         </div>
                     </div>
                 </div>
@@ -50,4 +45,5 @@
         </div>
     </div>
 </div>
+
 

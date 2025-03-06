@@ -1,18 +1,17 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
-using MyBlogProject.WebApı.Dtos.ToDoListDtos;
+﻿using Microsoft.AspNetCore.Mvc;
+using MyBlogProject.WebApı.Dtos.CommentDtos;
+using MyBlogProject.WebApı.Dtos.UserDtos;
 using Newtonsoft.Json;
-using System.Net.Http;
 using System.Text;
 
 namespace Frontend_Adm.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class AdminToDoListController : Controller
+    public class AdminCommentController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public AdminToDoListController(IHttpClientFactory httpClientFactory)
+        public AdminCommentController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -20,22 +19,22 @@ namespace Frontend_Adm.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5276/api/ToDoList");
+            var responseMessage = await client.GetAsync("http://localhost:5276/api/Comment");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ToDoListDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<CommentDto>>(jsonData);
                 return View(values);
             }
             return View();
         }
 
-        public async Task<IActionResult> CreateToDoList(ToDoListDto toDoListDto)
+        public async Task<IActionResult> CreateComment(CommentDto commentDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(toDoListDto);
+            var jsonData = JsonConvert.SerializeObject(commentDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("http://localhost:5276/api/ToDoList", stringContent);
+            var responseMessage = await client.PostAsync("http://localhost:5276/api/Comment", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -43,10 +42,10 @@ namespace Frontend_Adm.Areas.Admin.Controllers
             return View();
         }
 
-        public async Task<IActionResult> DeleteToDoList(int id)
+        public async Task<IActionResult> DeleteComment(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"http://localhost:5276/api/ToDoList/{id}");
+            var responseMessage = await client.DeleteAsync($"http://localhost:5276/api/Comment/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -55,31 +54,31 @@ namespace Frontend_Adm.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> UpdateToDoList(int id)
+        public async Task<IActionResult> UpdateComment(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"http://localhost:5276/api/ToDoList/{id}");
+            var responseMessage = await client.GetAsync($"http://localhost:5276/api/Comment/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<ToDoListDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<CommentDto>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateToDoList(ToDoListDto toDoListDto)
+        public async Task<IActionResult> UpdateComment(CommentDto commentDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(toDoListDto);
+            var jsonData = JsonConvert.SerializeObject(commentDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync($"http://localhost:5276/api/ToDoList/{toDoListDto.ToDoListId}", stringContent);
+            var responseMessage = await client.PutAsync($"http://localhost:5276/api/Comment/{commentDto.Id}", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
-            return View(toDoListDto);
+            return View(commentDto);
         }
     }
 }

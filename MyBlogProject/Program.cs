@@ -35,6 +35,9 @@ builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<IToDoListService, ToDoListService>();
 builder.Services.AddScoped<IToDoListRepository, ToDoListRepository>();
 
+builder.Services.AddScoped<IAboutService, AboutService>();
+builder.Services.AddScoped<IAboutRepository, AboutRepository>();
+
 
 
 builder.Services.AddControllers();
