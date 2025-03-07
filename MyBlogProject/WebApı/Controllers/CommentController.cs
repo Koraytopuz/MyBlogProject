@@ -57,7 +57,7 @@ namespace MyBlogProject.WebApı.Controllers
         public async Task<IActionResult> Update(int id, [FromBody] Comment comment)
         {
             if (id != comment.Id)
-                return BadRequest("ToDoList ID mismatch");
+                return BadRequest("Comment ID mismatch");
 
             await _commentService.UpdateAsync(comment);
             return Ok("Comment Updated Successful");

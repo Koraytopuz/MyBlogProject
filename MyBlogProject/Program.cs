@@ -38,6 +38,9 @@ builder.Services.AddScoped<IToDoListRepository, ToDoListRepository>();
 builder.Services.AddScoped<IAboutService, AboutService>();
 builder.Services.AddScoped<IAboutRepository, AboutRepository>();
 
+builder.Services.AddScoped<ISocialMediaService, SocialMediaService>();
+builder.Services.AddScoped<ISocialMediaRepository, SocialMediaRepository>();
+
 
 
 builder.Services.AddControllers();

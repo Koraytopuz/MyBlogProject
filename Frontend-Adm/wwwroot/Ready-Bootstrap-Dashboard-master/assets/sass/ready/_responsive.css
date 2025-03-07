@@ -1,33 +1,27 @@
-/*     Responsive     */
+﻿/*     Responsive     */
 @media screen and (max-width: 700px) {
-  .row-card-no-pd {
-    [class*=col-] .card:after {
-      width: 0px !important;
-    }
-    .card {
-      border-bottom-width: 1px;
-      &:last-child {
-        border-bottom-width: 0px;
-      }
-    }
+  .row-card-no-pd [class*=col-] .card:after {
+    width: 0px !important;
+  }
+  .row-card-no-pd .card {
+    border-bottom-width: 1px;
+  }
+  .row-card-no-pd .card:last-child {
+    border-bottom-width: 0px;
   }
 }
-
 @media screen and (min-width: 992px) {
   .main-header .logo-header {
     line-height: 52px;
   }
-  .sidebar {
-    .scroll-element {
-      opacity: 0;
-      transition: all .2s;
-    }
-    &:hover .scroll-element {
-      opacity: 1;
-    }
+  .sidebar .scroll-element {
+    opacity: 0;
+    transition: all 0.2s;
+  }
+  .sidebar:hover .scroll-element {
+    opacity: 1;
   }
 }
-
 @media screen and (max-width: 991px) {
   .sidebar {
     position: fixed;
@@ -38,7 +32,7 @@
     -o-transform: translate3d(-270px, 0, 0);
     -ms-transform: translate3d(-270px, 0, 0);
     transform: translate3d(-270px, 0, 0) !important;
-    transition: all .5s;
+    transition: all 0.5s;
   }
   .nav_open .sidebar {
     -webkit-transform: translate3d(0px, 0, 0);
@@ -52,23 +46,23 @@
   }
   .nav_open {
     overflow: hidden !important;
-    .main-panel, .main-header {
-      -webkit-transform: translate3d(260px, 0, 0);
-      -moz-transform: translate3d(260px, 0, 0);
-      -o-transform: translate3d(260px, 0, 0);
-      -ms-transform: translate3d(260px, 0, 0);
-      transform: translate3d(260px, 0, 0) !important;
-    }
+  }
+  .nav_open .main-panel, .nav_open .main-header {
+    -webkit-transform: translate3d(260px, 0, 0);
+    -moz-transform: translate3d(260px, 0, 0);
+    -o-transform: translate3d(260px, 0, 0);
+    -ms-transform: translate3d(260px, 0, 0);
+    transform: translate3d(260px, 0, 0) !important;
   }
   .main-header {
-    transition: all .5s;
+    transition: all 0.5s;
   }
   .main-panel {
     width: 100%;
-    transition: all .5s;
-    .content {
-      padding: 30px 10px;
-    }
+    transition: all 0.5s;
+  }
+  .main-panel .content {
+    padding: 30px 10px;
   }
   .main-header .logo-header {
     display: flex;
@@ -76,43 +70,40 @@
     text-align: left;
     position: relative;
     justify-content: center;
-    .navbar-toggler {
-      position: absolute;
-      top: auto;
-      height: 100%;
-      left: 15px;
-      opacity: 1;
-    }
-    .more {
-      opacity: 1;
-      position: absolute;
-      right: 15px;
-      color: #545454;
-      cursor: pointer;
-    }
+  }
+  .main-header .logo-header .navbar-toggler {
+    position: absolute;
+    top: auto;
+    height: 100%;
+    left: 15px;
+    opacity: 1;
+  }
+  .main-header .logo-header .more {
+    opacity: 1;
+    position: absolute;
+    right: 15px;
+    color: #545454;
+    cursor: pointer;
   }
   .nav-search {
     width: 100%;
     margin-right: 0 !important;
     margin-top: 12px;
   }
-    $white-color: #ffffff;
   .navbar-header {
     border-top: 1px solid #eee;
     position: absolute;
     width: 100%;
-    background: $white-color;
+    background: #ffffff;
     transform: translate3d(0, -200px, 0) !important;
-    transition: all .5s;
+    transition: all 0.5s;
   }
-  .topbar_open {
-    .navbar-header {
-      transform: translate3d(0, 54px, 0) !important;
-      border-bottom: 1px solid #eee;
-    }
-    .main-panel {
-      transform: translate3d(0, 125px, 0) !important;
-    }
+  .topbar_open .navbar-header {
+    transform: translate3d(0, 54px, 0) !important;
+    border-bottom: 1px solid #eee;
+  }
+  .topbar_open .main-panel {
+    transform: translate3d(0, 125px, 0) !important;
   }
   .nav_open.topbar_open .main-panel {
     transform: translate3d(260px, 125px, 0) !important;
@@ -125,16 +116,16 @@
     margin-top: 10px;
     margin-bottom: 10px;
     position: relative;
-    .dropdown {
-      position: unset;
-    }
-    .dropdown-menu {
-      position: absolute;
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-      max-width: 280px;
-    }
+  }
+  .navbar-header .navbar-nav .dropdown {
+    position: unset;
+  }
+  .navbar-header .navbar-nav .dropdown-menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    max-width: 280px;
   }
   .profile-pic span {
     display: none;
