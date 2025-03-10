@@ -19,6 +19,8 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="wwwroot\iPortfolio-1.0.0\.DS_Store" />
+    <None Include="wwwroot\iPortfolio-1.0.0\assets\.DS_Store" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,7 +9,6 @@ using MyBlogProject.DataAccess.Repositories.Implementations;
 using MyBlogProject.Business.Repositories;
 using MyBlogProject.Business.Interfaces.Repositories;
 using MyBlogProject.DataAccess.Repositories;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<MyBlogDbContext>(options =>
@@ -40,7 +39,6 @@ builder.Services.AddScoped<IAboutRepository, AboutRepository>();
 
 builder.Services.AddScoped<ISocialMediaService, SocialMediaService>();
 builder.Services.AddScoped<ISocialMediaRepository, SocialMediaRepository>();
-
 
 
 builder.Services.AddControllers();

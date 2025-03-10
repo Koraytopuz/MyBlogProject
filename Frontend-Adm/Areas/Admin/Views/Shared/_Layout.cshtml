@@ -8,20 +8,20 @@
     <link rel="stylesheet" href="~/Ready-Bootstrap-Dashboard-master/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="~/Ready-Bootstrap-Dashboard-master/assets/css/ready.css">
-    <link rel="stylesheet" href="~/Ready-Bootstrap-Dashboard-master/assets/css/demo.css" asp-append-version="true">
-    <link rel="stylesheet" href="~/Ready-Bootstrap-Dashboard-master/lib/bootstrap/dist/css/bootstrap.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Ready-Bootstrap-Dashboard-master/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Ready-Bootstrap-Dashboard-master/Frontend_Adm.styles.css" />
+    <link rel="stylesheet" href="~/Ready-Bootstrap-Dashboard-master/assets/css/demo.css" >
+    <link rel="stylesheet" href="~/Ready-Bootstrap-Dashboard-master/lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Ready-Bootstrap-Dashboard-master/css/site.css">
+    <link rel="stylesheet" href="~/Ready-Bootstrap-Dashboard-master/Frontend_Adm.styles.css">
 </head>
 
 <body>
 
     <div class="wrapper">
-    @await Component.InvokeAsync("_AdminSideBarComponentPartial")
     @await Component.InvokeAsync("_AdminNavBarComponentPartial")
-
+    @await Component.InvokeAsync("_AdminSideBarComponentPartial")
         <div class="main-panel">
-               @*  @await Component.InvokeAsync("_AdminHomePageComponentPartial") *@
+
+                @* @await Component.InvokeAsync("_AdminHomePageComponentPartial") *@
                 @RenderBody()
             </div>      
         </div>
@@ -30,8 +30,8 @@
     <script src="~/js/site.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 @await Component.InvokeAsync("_AdminScriptComponentPartial")
+@await Component.InvokeAsync("_AdminFooterComponentPartial")
 </body>
 
-@await Component.InvokeAsync("_AdminFooterComponentPartial")
 
 </html>
