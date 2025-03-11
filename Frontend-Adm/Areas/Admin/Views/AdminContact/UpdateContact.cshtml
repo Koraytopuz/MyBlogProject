@@ -1,0 +1,51 @@
+﻿@model ResultContactDto
+@{
+    ViewData["Title"] = "UpdateContact";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">İletişim İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">İletişim Güncelleme</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Name">İsim Giriniz</label>
+                                <input type="text" class="form-control" asp-for="Name" id="Name">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Email">Mail Giriniz</label>
+                                <input type="email" class="form-control" asp-for="Email" id="Email">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Subject">Konu Giriniz</label>
+                                <input type="text" class="form-control" asp-for="Subject" id="Subject">
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="Message">Mesaj Giriniz</label>
+                                    <input type="text" class="form-control" asp-for="Message" id="Message">
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <button class="btn btn-primary">İletişim Güncelle</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

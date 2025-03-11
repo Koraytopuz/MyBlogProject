@@ -47,5 +47,9 @@ namespace MyBlogProject.DataAccess.Context
         public DbSet<Comment> Comments { get; set; }
         public DbSet<SocialMedia> SocialMedias  { get; set; }
         public DbSet<ToDoList> ToDoLists { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Portfolio> Portfolios { get; set; }
+        public DbSet<PortfolioDetail> PortfolioDetails { get; set; }
+        public DbSet<Skill> Skills { get; set; }
     }
 }   

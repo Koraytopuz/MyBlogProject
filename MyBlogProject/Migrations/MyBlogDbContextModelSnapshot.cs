@@ -30,6 +30,18 @@ namespace MyBlogProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AboutId"));
 
+                    b.Property<string>("Age")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Birthday")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Degree")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -38,13 +50,36 @@ namespace MyBlogProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WebUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AboutId");
 
-                    b.ToTable("Abouts", (string)null);
+                    b.ToTable("Abouts");
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.Comment", b =>
@@ -77,7 +112,94 @@ namespace MyBlogProject.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("MyBlogProject.Entities.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
+                });
+
+            modelBuilder.Entity("MyBlogProject.Entities.Portfolio", b =>
+                {
+                    b.Property<int>("PortfolioId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PortfolioId"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PortfolioId");
+
+                    b.ToTable("Portfolios");
+                });
+
+            modelBuilder.Entity("MyBlogProject.Entities.PortfolioDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BigImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Detail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProjectTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProjectUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PortfolioDetails");
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.Post", b =>
@@ -113,7 +235,27 @@ namespace MyBlogProject.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Posts", (string)null);
+                    b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("MyBlogProject.Entities.Skill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("SkillName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Skills");
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.SocialMedia", b =>
@@ -138,7 +280,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasKey("SocialMediaId");
 
-                    b.ToTable("SocialMedias", (string)null);
+                    b.ToTable("SocialMedias");
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.ToDoList", b =>
@@ -161,7 +303,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasKey("ToDoListId");
 
-                    b.ToTable("ToDoLists", (string)null);
+                    b.ToTable("ToDoLists");
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.User", b =>
@@ -182,7 +324,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.Comment", b =>

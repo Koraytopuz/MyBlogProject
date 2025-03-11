@@ -40,6 +40,18 @@ builder.Services.AddScoped<IAboutRepository, AboutRepository>();
 builder.Services.AddScoped<ISocialMediaService, SocialMediaService>();
 builder.Services.AddScoped<ISocialMediaRepository, SocialMediaRepository>();
 
+builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
+
+builder.Services.AddScoped<IPortfolioService, PortfolioService>();
+builder.Services.AddScoped<IPortfolioRepository,PortfolioRepository >();
+
+builder.Services.AddScoped<IPortfolioDetailService, PortfolioDetailService>();
+builder.Services.AddScoped<IPortfolioDetailRepository,PortfolioDetailRepository >();
+
+builder.Services.AddScoped<ISkillService, SkillService>();
+builder.Services.AddScoped<ISkillRepository,SkillRepository >();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

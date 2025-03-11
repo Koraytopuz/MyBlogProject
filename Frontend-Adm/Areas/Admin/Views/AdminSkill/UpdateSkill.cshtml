@@ -1,0 +1,40 @@
+﻿@model ResultSkillDto
+@{
+    ViewData["Title"] = "UpdateSkill";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Yetenek İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yetenek Güncelleme</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="SkillName">İsim Giriniz</label>
+                                <input type="text" class="form-control" asp-for="SkillName" id="SkillName">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Value">Değer Giriniz</label>
+                                <input type="number" class="form-control" asp-for="Value" id="Value">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                          
+                            <div class="card-action">
+                                <button class="btn btn-primary">Yetenek Güncelle</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

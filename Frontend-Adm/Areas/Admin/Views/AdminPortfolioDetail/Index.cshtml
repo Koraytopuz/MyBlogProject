@@ -1,0 +1,57 @@
+﻿@model List<ResultPortfolioDetailDto>	
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+	int count = 0;
+}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Portfolyo Detay İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Portfolyo Detay  alanıyla ilgili işlemleri yapabilirsiniz. Tema bütünlüğü için sadece 1 tane hakkımızda alanı oluşturmayı unutmayın.
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Başlık </th>
+                                        <th>Proje Başlığı</th>
+                                        <th>Açıklama</th>
+                                        <th>Image Url</th>
+                                        <th>Proje Url</th>
+                                        <th>Detay</th>
+                                        <th>Sil</th>
+                                        <th>Güncelle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        count++;
+                                        <tr>
+                                            <td>@count</td>
+                                            <td>@item.Title</td>
+                                            <td>@item.ProjectTitle</td>
+                                            <td>@item.Description</td>
+                                            <td>@item.BigImageUrl</td>
+                                            <td>@item.ProjectTitle</td>
+                                            <td>@item.Detail</td>
+                                            <td><a href="/Admin/AdminPortfolioDetail/DeletePortfolioDetail/@item.Id" class="btn btn-outline-danger">Sil </a></td>
+                                            <td><a href="/Admin/AdminPortfolioDetail/UpdatePortfolioDetail/@item.Id" class="btn btn-outline-success">Güncelle </a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <a href="/Admin/AdminPortfolioDetail/CreatePortfolioDetail/" class="btn btn-outline-primary">Yeni Portfolyo Detayı Girişi </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

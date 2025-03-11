@@ -1,0 +1,56 @@
+﻿@model List<ResultContactDto>	
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+	int count = 0;	
+}
+
+
+<div class="content">
+	<div class="container-fluid">
+		<h4 class="page-title">Ana Sayfa İletişim İşlemleri</h4>
+		<div class="row">
+			<div class="col-md-12">
+
+				<div class="card">
+
+					<div class="card-body">
+						<div class="card-sub">
+							İletişim alanıyla ilgili işlemleri yapabilirsiniz. Tema bütünlüğü için sadece 1 tane hakkımızda alanı oluşturmayı unutmayın.
+						</div>
+						<table class="table mt-3">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">İsim</th>
+									<th scope="col">Email</th>
+									<th scope="col">Konu</th>
+									<th scope="col">Mesaj</th>
+									<th scope="col">Sil</th>
+									<th scope="col">Güncelle</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+                                    count++;
+									<tr>
+										<td>@count</td>
+										<td>@item.Name</td>
+										<td>@item.Email</td>
+										<td>@item.Subject</td>
+										<td>@item.Message</td>
+										<td><a href="/Admin/AdminContact/DeleteContact/@item.Id" class="btn btn-outline-danger">Sil</a></td>
+										<td><a href="/Admin/AdminContact/UpdateContact/@item.Id" class="btn btn-outline-success">Güncelle</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+						<a href="/Admin/AdminContact/CreateContact/" class="btn btn-outline-primary">Yeni İletişim Girişi</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+

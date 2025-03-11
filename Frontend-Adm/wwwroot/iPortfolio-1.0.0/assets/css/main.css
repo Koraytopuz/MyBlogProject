@@ -1273,3 +1273,22 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+.hidden {
+    display: none;
+}
+
+.btn-custom {
+    background-color: #007bff; /* Mavi renk */
+    color: white; /* Beyaz yazý rengi */
+    border: none; /* Kenarlýk yok */
+    padding: 10px 20px; /* Ýç boþluk */
+    font-size: 16px; /* Yazý boyutu */
+    border-radius: 5px; /* Kenarlarý yuvarlat */
+    cursor: pointer; /* Ýmleç deðiþimi */
+    transition: background-color 0.3s ease; /* Geçiþ efekti */
+}
+
+    .btn-custom:hover {
+        background-color: #0056b3; /* Hover durumunda daha koyu mavi */
+    }
