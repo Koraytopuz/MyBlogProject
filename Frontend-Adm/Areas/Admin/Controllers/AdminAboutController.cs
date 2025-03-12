@@ -51,7 +51,7 @@ namespace Frontend_Adm.Areas.Admin.Controllers
             var responseMessage = await client.PutAsync($"http://localhost:5276/api/About/{aboutDto.AboutId}", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("/About/Index");
             }
             return View(aboutDto);
         }
@@ -70,7 +70,7 @@ namespace Frontend_Adm.Areas.Admin.Controllers
             var responseMessage = await client.PostAsync("http://localhost:5276/api/About", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("/About/Index");
             }
             return View(aboutDto);
         }

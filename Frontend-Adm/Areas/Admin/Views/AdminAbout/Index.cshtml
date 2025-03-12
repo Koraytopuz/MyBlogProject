@@ -21,6 +21,16 @@
 								<tr>
 									<th scope="col">Başlık</th>
 									<th scope="col">Açıklama</th>
+									<th scope="col">Detay</th>
+									<th scope="col">Doğum Günü</th>
+									<th scope="col">Yaş</th>
+									<th scope="col">Mail</th>
+									<th scope="col">Telefon</th>
+									<th scope="col">Konum</th>
+									<th scope="col">Derece</th>
+									<th scope="col">Github</th>
+									<th scope="col">ImageUrl</th>
+									<th scope="col">Status</th>
 									<th scope="col">Sil</th>
 									<th scope="col">Güncelle</th>
 								</tr>
@@ -31,6 +41,16 @@
 									<tr>
 										<td>@item.Title</td>
 										<td>@item.Description</td>
+										<td>@item.Details</td>
+										<td>@item.Birthday</td>
+										<td>@item.Age</td>
+										<td>@item.Email</td>
+										<td>@item.Phone</td>
+										<td>@item.Location</td>
+										<td>@item.Degree</td>
+										<td>@item.WebUrl</td>
+										<td>@item.ImageUrl</td>
+										<td>@item.Status</td>
 										<td><a href="/Admin/AdminAbout/DeleteAbout/@item.AboutId" class="btn btn-outline-danger">Sil</a></td>
 										<td><a href="/Admin/AdminAbout/UpdateAbout/@item.AboutId" class="btn btn-outline-success">Güncelle</a></td>
 									</tr>

@@ -44,7 +44,17 @@ namespace MyBlogProject.WebApi.Controllers
             {
                 Title = aboutDto.Title,
                 Description = aboutDto.Description,
-                Details = aboutDto.Details
+                Details = aboutDto.Details,
+                Status = aboutDto.Status,
+                ImageUrl = aboutDto.ImageUrl,
+                Birthday = aboutDto.Birthday,
+                Age = aboutDto.Age,
+                Degree = aboutDto.Degree,
+                WebUrl = aboutDto.WebUrl,
+                Email = aboutDto.Email,
+                Location = aboutDto.Location,
+                Phone = aboutDto.Phone
+
             };
 
             await _aboutService.CreateAboutAsync(about);
@@ -64,6 +74,15 @@ namespace MyBlogProject.WebApi.Controllers
             existingAbout.Title = aboutDto.Title;
             existingAbout.Description = aboutDto.Description;
             existingAbout.Details = aboutDto.Details;
+            existingAbout.Status = aboutDto.Status;
+            existingAbout.ImageUrl = aboutDto.ImageUrl;
+            existingAbout.Birthday = aboutDto.Birthday;
+            existingAbout.Age = aboutDto.Age;
+            existingAbout.Degree = aboutDto.Degree;
+            existingAbout.WebUrl = aboutDto.WebUrl;
+            existingAbout.Email = aboutDto.Email;
+            existingAbout.Location = aboutDto.Location;
+            existingAbout.Phone = aboutDto.Phone;
 
             await _aboutService.UpdateAboutAsync(existingAbout);
             return Ok("Hakkımda başarıyla güncellendi.");
