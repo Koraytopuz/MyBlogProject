@@ -79,7 +79,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasKey("AboutId");
 
-                    b.ToTable("Abouts");
+                    b.ToTable("Abouts", (string)null);
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.Comment", b =>
@@ -112,7 +112,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.Contact", b =>
@@ -141,7 +141,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.Portfolio", b =>
@@ -162,7 +162,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasKey("PortfolioId");
 
-                    b.ToTable("Portfolios");
+                    b.ToTable("Portfolios", (string)null);
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.PortfolioDetail", b =>
@@ -199,7 +199,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PortfolioDetails");
+                    b.ToTable("PortfolioDetails", (string)null);
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.Post", b =>
@@ -235,7 +235,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.Skill", b =>
@@ -255,7 +255,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Skills");
+                    b.ToTable("Skills", (string)null);
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.SocialMedia", b =>
@@ -280,7 +280,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasKey("SocialMediaId");
 
-                    b.ToTable("SocialMedias");
+                    b.ToTable("SocialMedias", (string)null);
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.ToDoList", b =>
@@ -303,7 +303,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasKey("ToDoListId");
 
-                    b.ToTable("ToDoLists");
+                    b.ToTable("ToDoLists", (string)null);
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.User", b =>
@@ -324,7 +324,7 @@ namespace MyBlogProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("MyBlogProject.Entities.Comment", b =>

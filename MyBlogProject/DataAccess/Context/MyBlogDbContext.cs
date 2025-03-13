@@ -40,7 +40,6 @@ namespace MyBlogProject.DataAccess.Context
                 }
             }
         }
-
         public DbSet<User> Users { get; set; }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Post> Posts { get; set; }

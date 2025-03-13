@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using MyBlogProject.Business.Interfaces;
 using MyBlogProject.Business.Services;
 using MyBlogProject.Entities;
@@ -11,17 +12,19 @@ namespace MyBlogProject.WebApi.Controllers
     public class AboutController : ControllerBase
     {
         private readonly IAboutService _aboutService;
+        private readonly IMapper _mapper;
 
-        public AboutController(IAboutService aboutService)
+        public AboutController(IAboutService aboutService, IMapper mapper)
         {
             _aboutService = aboutService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var abouts = await _aboutService.GetAllAsync();
-            return Ok(abouts);
+            return Ok(_mapper.Map<List<AboutDto>>(abouts));
         }
 
         [HttpGet("{id}")]
@@ -29,8 +32,7 @@ namespace MyBlogProject.WebApi.Controllers
         {
             var about = await _aboutService.GetAboutByIdAsync(id);
             if (about == null)
-                return NotFound($"ID'si {id} olan Hakkımda bulunamadı.");
-
+                return NotFound();
             return Ok(about);
         }
 
@@ -38,65 +40,34 @@ namespace MyBlogProject.WebApi.Controllers
         public async Task<IActionResult> Create([FromBody] AboutDto aboutDto)
         {
             if (aboutDto == null)
-                return BadRequest("Geçersiz Hakkımda verisi.");
+                return BadRequest();
 
-            var about = new About
-            {
-                Title = aboutDto.Title,
-                Description = aboutDto.Description,
-                Details = aboutDto.Details,
-                Status = aboutDto.Status,
-                ImageUrl = aboutDto.ImageUrl,
-                Birthday = aboutDto.Birthday,
-                Age = aboutDto.Age,
-                Degree = aboutDto.Degree,
-                WebUrl = aboutDto.WebUrl,
-                Email = aboutDto.Email,
-                Location = aboutDto.Location,
-                Phone = aboutDto.Phone
-
-            };
-
+            var about = _mapper.Map<About>(aboutDto);
             await _aboutService.CreateAboutAsync(about);
-            return Ok("Hakkımda başarıyla oluşturuldu.");
+
+            return Ok("About Created Successfully");
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] AboutDto aboutDto)
         {
-            if (aboutDto == null)
-                return BadRequest("Geçersiz Hakkımda verisi.");
+            if (id != aboutDto.AboutId)
+                return BadRequest("About ID mismatch");
 
             var existingAbout = await _aboutService.GetAboutByIdAsync(id);
             if (existingAbout == null)
-                return NotFound($"ID'si {id} olan Hakkımda bulunamadı.");
+                return NotFound($"ID'si {id} olan About bulunamadı.");
 
-            existingAbout.Title = aboutDto.Title;
-            existingAbout.Description = aboutDto.Description;
-            existingAbout.Details = aboutDto.Details;
-            existingAbout.Status = aboutDto.Status;
-            existingAbout.ImageUrl = aboutDto.ImageUrl;
-            existingAbout.Birthday = aboutDto.Birthday;
-            existingAbout.Age = aboutDto.Age;
-            existingAbout.Degree = aboutDto.Degree;
-            existingAbout.WebUrl = aboutDto.WebUrl;
-            existingAbout.Email = aboutDto.Email;
-            existingAbout.Location = aboutDto.Location;
-            existingAbout.Phone = aboutDto.Phone;
-
-            await _aboutService.UpdateAboutAsync(existingAbout);
-            return Ok("Hakkımda başarıyla güncellendi.");
+            var about = _mapper.Map(aboutDto, existingAbout);
+            await _aboutService.UpdateAboutAsync(about);
+            return Ok("About Updated Successfully");
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var existingAbout = await _aboutService.GetAboutByIdAsync(id);
-            if (existingAbout == null)
-                return NotFound($"ID'si {id} olan Hakkımda bulunamadı.");
-
             await _aboutService.DeleteAboutAsync(id);
-            return Ok("Hakkımda başarıyla silindi.");
+            return Ok("About Deleted Successfully");
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using MyBlogProject.WebApı.Dtos.ToDoListDtos;
 using MyBlogProject.WebApı.Dtos.ToDoListDtos;
 using Newtonsoft.Json;
 using System.Net.Http;
@@ -30,10 +30,10 @@ namespace Frontend_Adm.Areas.Admin.Controllers
             return View();
         }
 
-        public async Task<IActionResult> CreateToDoList(ToDoListDto toDoListDto)
+        public async Task<IActionResult> CreateToDoList(ToDoListDto ToDoListDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(toDoListDto);
+            var jsonData = JsonConvert.SerializeObject(ToDoListDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync("http://localhost:5276/api/ToDoList", stringContent);
             if (responseMessage.IsSuccessStatusCode)
@@ -69,17 +69,18 @@ namespace Frontend_Adm.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateToDoList(ToDoListDto toDoListDto)
+        public async Task<IActionResult> UpdateToDoList(ToDoListDto ToDoListDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(toDoListDto);
+            var jsonData = JsonConvert.SerializeObject(ToDoListDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync($"http://localhost:5276/api/ToDoList/{toDoListDto.ToDoListId}", stringContent);
+            var responseMessage = await client.PutAsync($"http://localhost:5276/api/ToDoList/{ToDoListDto.ToDoListId}", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
-            return View(toDoListDto);
+            return View(ToDoListDto);
         }
     }
 }
+

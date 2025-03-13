@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyBlogProject.WebApı.Dtos.AboutDtos;
 using Newtonsoft.Json;
+using System.Net.Http;
 using System.Text;
 
 namespace Frontend_Adm.Areas.Admin.Controllers
@@ -29,6 +30,26 @@ namespace Frontend_Adm.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        public IActionResult CreateAbout()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAbout(AboutDto aboutDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(aboutDto);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PostAsync("http://localhost:5276/api/About", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(aboutDto);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> UpdateAbout(int id)
         {
             var client = _httpClientFactory.CreateClient();
@@ -51,39 +72,9 @@ namespace Frontend_Adm.Areas.Admin.Controllers
             var responseMessage = await client.PutAsync($"http://localhost:5276/api/About/{aboutDto.AboutId}", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("/About/Index");
-            }
-            return View(aboutDto);
-        }
-
-        public async Task<IActionResult> CreateAbout()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateAbout(AboutDto aboutDto)
-        {
-            var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(aboutDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("http://localhost:5276/api/About", stringContent);
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                return RedirectToAction("/About/Index");
-            }
-            return View(aboutDto);
-        }
-
-        public async Task<IActionResult> DeleteAbout(int id)
-        {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"http://localhost:5276/api/About/{id}");
-            if (responseMessage.IsSuccessStatusCode)
-            {
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(aboutDto);
         }
     }
 }

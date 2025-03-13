@@ -1,4 +1,4 @@
-﻿@model AboutDto
+﻿@* @model AboutDto
 @{
     ViewData["Title"] = "CreateAbout";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -95,3 +95,95 @@
         </div>
     </div>
 </div>
+ *@
+
+                                            @model AboutDto
+@{
+    ViewData["Title"] = "CreateAbout";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Ana Sayfa Hakkımızda İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="CreateAbout" method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yeni Hakkımızda Yazı Girişi</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Title">Başlığı Giriniz</label>
+                                <input type="text" class="form-control" asp-for="Title" id="Title">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="Description">Açıklamayı Giriniz</label>
+                                <textarea rows="5" class="form-control" asp-for="Description" id="Description"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="Details">Detay Giriniz</label>
+                                <input type="text" class="form-control" asp-for="Details" id="Details">
+                                <span asp-validation-for="Details" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="Birthday">Doğum Günü Giriniz</label>
+                                <input type="date" class="form-control" asp-for="Birthday" id="Birthday">
+                                <span asp-validation-for="Birthday" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="Age">Yaş Giriniz</label>
+                                <input type="number" class="form-control" asp-for="Age" id="Age">
+                                <span asp-validation-for="Age" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="Email">Mail Giriniz</label>
+                                <input type="email" class="form-control" asp-for="Email" id="Email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="Phone">Telefon Giriniz</label>
+                                <input type="number" class="form-control" asp-for="Phone" id="Phone">
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="Location">Konum Giriniz</label>
+                                <input type="text" class="form-control" asp-for="Location" id="Location">
+                                <span asp-validation-for="Location" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="Degree">Derece Giriniz</label>
+                                <input type="text" class="form-control" asp-for="Degree" id="Degree">
+                                <span asp-validation-for="Degree" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="WebUrl">GithubUrl Giriniz</label>
+                                <input type="text" class="form-control" asp-for="WebUrl" id="WebUrl">
+                                <span asp-validation-for="WebUrl" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="ImageUrl">ImageUrl Giriniz</label>
+                                <input type="text" class="form-control" asp-for="ImageUrl" id="ImageUrl">
+                                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="Status">Status Giriniz</label>
+                                <input type="checkbox" class="form-control" asp-for="Status" id="Status">
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary waves-effect waves-light ml-2">Hakkımda Ekle</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+}
+

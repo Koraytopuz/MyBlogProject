@@ -6,41 +6,35 @@
 
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">Görev Listesi İşlemleri</h4>
 
+        <h4 class="page-title">Görev İşlemleri</h4>
         <div class="row">
             <div class="col-md-12">
-                        <form method="post">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Görev Girişi</div>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputName">Görev Adı</label>
-                                <input type="text" class="form-control" id="exampleInputName" asp-for="Title" placeholder="Görev Adını Giriniz">
-                            </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputDate">Tarih</label>
-                                <input type="date" class="form-control" id="exampleInputDate" asp-for="Date" placeholder="Tarihi Giriniz">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputMail">Durum</label>
-                                <input type="button" class="form-control" id="exampleInputMail" asp-for="Status">
-                            </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Görev Girişi</h4>
+                        <p class="card-subtitle mb-4">Görev güncelleme işlemlerini aşağıdaki panelden yapabilirsiniz.</p>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="Title">Başlık</label>
+                        <input type="text" class="form-control" id="Title" asp-for="Title" placeholder="Başlık Giriniz">
+                    </div>
 
-                            <button type="submit" class="btn btn-success waves-effect waves-light ml-2" name="status" value="completed">Yapıldı</button>
-                            <button type="submit" class="btn btn-danger waves-effect waves-light ml-2" name="status" value="not_completed">Yapılmadı</button>
-                            <br />
-                            <br />
-
-                            <button type="submit" class="btn btn-primary waves-effect waves-light ml-2">Görevi Güncelle</button>
-                            </div>
-                            </div>
-                        </form>
+                    <div class="form-group">
+                        <label for="Date">Tarih</label>
+                        <input type="date" class="form-control" id="Date" asp-for="Date" placeholder="Tarihi Giriniz">
+                    </div>
+                    <div class="form-group">
+                        <label for="Status">Durum</label>
+                        <input type="datetime" class="form-control" id="Status" asp-for="Status" placeholder="Durum Bilgisi Giriniz">
+                    </div>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light">Kullanıcıyı Güncelle</button>
+                </form>
 
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
         </div>
