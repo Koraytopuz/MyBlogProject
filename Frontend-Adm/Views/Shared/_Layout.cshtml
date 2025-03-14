@@ -12,5 +12,11 @@
     </main>
     @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
     @await Component.InvokeAsync("_UILayoutScriptComponentPartial")
+
+    <script src="~/js/site.js"></script>
+    @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+    @{
+        var currentPath = HttpContextAccessor.HttpContext.Request.Path;
+    }
 </body>
 </html>

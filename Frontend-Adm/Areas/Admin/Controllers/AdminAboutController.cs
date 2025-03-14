@@ -38,6 +38,11 @@ namespace Frontend_Adm.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAbout(AboutDto aboutDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(aboutDto);
+            }
+
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(aboutDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -64,17 +69,30 @@ namespace Frontend_Adm.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateAbout(AboutDto aboutDto)
+        public async Task<IActionResult> UpdateAbout(AboutDto AboutDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(aboutDto);
+            var jsonData = JsonConvert.SerializeObject(AboutDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync($"http://localhost:5276/api/About/{aboutDto.AboutId}", stringContent);
+            var responseMessage = await client.PutAsync($"http://localhost:5276/api/About/{AboutDto.AboutId}", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
-            return View(aboutDto);
+            return View(AboutDto);
         }
+        public async Task<IActionResult> DeleteAbout(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.DeleteAsync($"http://localhost:5276/api/About/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
     }
 }
+
+

@@ -38,7 +38,7 @@ namespace MyBlogProject.DataAccess.Repositories.Implementations
         public async Task UpdateAsync(About about)
         {
             _myBlogDbContext.Abouts.Update(about);
-            _myBlogDbContext.SaveChangesAsync();
+           await _myBlogDbContext.SaveChangesAsync();
         }
         public async Task SaveAsync()
         {
@@ -51,6 +51,7 @@ namespace MyBlogProject.DataAccess.Repositories.Implementations
         {
             return await _myBlogDbContext.Abouts.ToListAsync();
         }
+   
     }
 }
 

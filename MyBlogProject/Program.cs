@@ -4,22 +4,21 @@ using MyBlogProject.Business.Services;
 using MyBlogProject.DataAccess.Context;
 using MyBlogProject.WebApi.Mapping;
 using AutoMapper;
-using AutoMapper.Configuration;
 using MyBlogProject.DataAccess.Repositories.Implementations;
 using MyBlogProject.Business.Repositories;
 using MyBlogProject.Business.Interfaces.Repositories;
 using MyBlogProject.DataAccess.Repositories;
+using Microsoft.Extensions.Configuration;
+using Frontend_Adm.Services; // Eklenen kýsým
+
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
 builder.Services.AddDbContext<MyBlogDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
 builder.Services.AddAutoMapper(typeof(MappingProfile));
-//builder.Services.AddDbContext<MyBlogDbContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("Server=PC003BTX50\\SQLEXPRESS;Database=BlogProjectDb;integrated Security=True;TrustServerCertificate=True;MultipleActiveResultSets=true")));
 
-// Add services to the container.
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -43,17 +42,14 @@ builder.Services.AddScoped<ISocialMediaRepository, SocialMediaRepository>();
 builder.Services.AddScoped<IContactService, ContactService>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
-builder.Services.AddScoped<IPortfolioService, PortfolioService>();
-builder.Services.AddScoped<IPortfolioRepository,PortfolioRepository >();
-
 builder.Services.AddScoped<IPortfolioDetailService, PortfolioDetailService>();
-builder.Services.AddScoped<IPortfolioDetailRepository,PortfolioDetailRepository >();
+builder.Services.AddScoped<IPortfolioDetailRepository, PortfolioDetailRepository>();
 
 builder.Services.AddScoped<ISkillService, SkillService>();
-builder.Services.AddScoped<ISkillRepository,SkillRepository >();
+builder.Services.AddScoped<ISkillRepository, SkillRepository>();
 
+builder.Services.AddControllersWithViews();
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

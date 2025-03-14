@@ -32,6 +32,7 @@ namespace MyBlogProject.Business.Interfaces
                 existingPortfolioDetail.BigImageUrl = PortfolioDetail.BigImageUrl;
                 existingPortfolioDetail.ProjectUrl = PortfolioDetail.ProjectUrl;
                 
+                
                 await _PortfolioDetailRepository.UpdateAsync(existingPortfolioDetail);
             }
         }

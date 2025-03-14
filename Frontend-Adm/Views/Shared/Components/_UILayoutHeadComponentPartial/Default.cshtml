@@ -1,13 +1,19 @@
-﻿<header id="header" class="header dark-background d-flex flex-column">
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var currentPath = HttpContextAccessor.HttpContext.Request.Path;
+}
+
+<header id="header" class="header dark-background d-flex flex-column">
     <i class="header-toggle d-xl-none bi bi-list"></i>
 
     <div class="profile-img">
-        <img src="~/iPortfolio-1.0.0/assets/img/my-profile-img.jpg" alt="" class="img-fluid rounded-circle">
+        <img src="~/iPortfolio-1.0.0/assets/img/biometric.jpg" alt="" class="img-fluid rounded-circle">
     </div>
 
     <a href="/Hero/Index" class="logo d-flex align-items-center justify-content-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <!-- <img src="assets/img/output.ico" alt=""> -->
         <h1 class="sitename">Koray Topuz</h1>
     </a>
 
@@ -21,13 +27,11 @@
 
     <nav id="navmenu" class="navmenu">
         <ul>
-            <li><a href="/Hero/Index" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
-            <li><a href="/About/Index"><i class="bi bi-person navicon"></i> About</a></li>
-            <li><a href="/Resume/Index"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
-            <li><a href="/Portfolio/Index"><i class="bi bi-images navicon"></i> Portfolio</a></li>
-            <li><a href="#"><i class="bi bi-hdd-stack navicon"></i> Services</a></li>
-            <li><a href="/Contact/Index"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+            <li><a href="/Hero/Index#hero" class="@(currentPath == "/Hero/Index" ? "active" : "")"><i class="bi bi-house navicon"></i>Home</a></li>
+            <li><a href="/About/Index#about" class="@(currentPath == "/About/Index" ? "active" : "")"><i class="bi bi-person navicon"></i> About</a></li>
+            <li><a href="/Resume/Index" class="@(currentPath == "/Resume/Index" ? "active" : "")"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
+            <li><a href="/Portfolio/Index" class="@(currentPath == "/Portfolio/Index" ? "active" : "")"><i class="bi bi-images navicon"></i> Portfolio</a></li>
+            <li><a href="/Contact/Index" class="@(currentPath == "/Contact/Index" ? "active" : "")"><i class="bi bi-envelope navicon"></i> Contact</a></li>
         </ul>
     </nav>
-
 </header>

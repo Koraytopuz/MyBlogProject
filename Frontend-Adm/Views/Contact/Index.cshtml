@@ -1,4 +1,4 @@
-﻿@model ResultContactDto
+﻿@model AboutViewModel
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -43,33 +43,35 @@
                         </div>
                     </div><!-- End Info Item -->
 
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30658.55252137847!2d37.3473834!3d37.0662209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1531e5f939c9d3b9%3A0xc3d8e02152d34db2!2s%C5%9Eahinbey%2C%20Gaziantep!5e0!3m2!1str!2str!4v1710418300000!5m2!1str!2str" frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
-
             <div class="col-lg-7">
                 <form class="bg-light p-5 contact-form" method="post">
                     <div class="row gy-4">
+            @foreach (var item in Model.ResultContacts)
+            {
 
                         <div class="col-md-6">
                             <label for="name-field" class="pb-2">Adınız</label>
-                            <input type="text" id="name-field" class="form-control" asp-for="Name">
+                            <input type="text" id="name-field" class="form-control" asp-for="@item.Name">
                         </div>
 
                         <div class="col-md-6">
                             <label for="email-field" class="pb-2">Mail Adresiniz</label>
-                            <input type="email" class="form-control" id="email-field" asp-for="Email">
+                            <input type="email" class="form-control" id="email-field" asp-for="@item.Email">
                         </div>
 
                         <div class="col-md-12">
                             <label for="subject-field" class="pb-2">Konu</label>
-                            <input type="text" class="form-control" asp-for="Subject" id="subject-field">
+                            <input type="text" class="form-control" asp-for="@item.Subject" id="subject-field">
                         </div>
 
                         <div class="col-md-12">
                             <label for="message-field" class="pb-2">Mesaj</label>
-                            <textarea class="form-control" asp-for="Message" rows="10" id="message-field" required=""></textarea>
+                            <textarea class="form-control" asp-for="@item.Message" rows="10" id="message-field" required=""></textarea>
                         </div>
+            }
 
                         <div class="col-md-12 text-center">
                             @if (ViewData["SuccessMessage"] != null)
@@ -82,11 +84,9 @@
                     </div>
                 </form>
             </div><!-- End Contact Form -->
-
         </div>
 
     </div>
 
 </section><!-- /Contact Section -->
 <script src="~/js/site.js"></script>
-

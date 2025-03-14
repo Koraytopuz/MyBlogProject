@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Frontend_Adm.Models;
+using Microsoft.AspNetCore.Mvc;
 using MyBlogProject.WebApı.Dtos.ContactDtos;
 using Newtonsoft.Json;
 using System.Text;
@@ -13,11 +14,18 @@ namespace Frontend_Adm.Controllers
         {
             _httpClientFactory = httpClientFactory;
         }
-
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var model = new AboutViewModel
+            {
+                ResultContacts = new List<ResultContactDto>
+        {
+            new ResultContactDto() // Form alanlarını göstermek için boş bir nesne ekleyin
+        }
+                // Diğer özellikleri de gerektiği gibi başlatın
+            };
+            return View(model);
         }
 
         [HttpPost]
@@ -25,7 +33,12 @@ namespace Frontend_Adm.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(resultContactDto);
+                var model = new AboutViewModel
+                {
+                    ResultContacts = new List<ResultContactDto> { resultContactDto }
+                    // Diğer özellikleri de gerektiği gibi başlatın
+                };
+                return View(model);
             }
 
             var client = _httpClientFactory.CreateClient();
@@ -36,11 +49,25 @@ namespace Frontend_Adm.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 ViewData["SuccessMessage"] = "Mesajınız Başarıyla Gönderildi.Teşekkürler!";
-                return View();
+                var model = new AboutViewModel
+                {
+                    ResultContacts = new List<ResultContactDto>
+            {
+                new ResultContactDto() // Form alanlarını göstermek için boş bir nesne ekleyin
+            }
+                    // Diğer özellikleri de gerektiği gibi başlatın
+                };
+                return View(model);
             }
 
             ModelState.AddModelError(string.Empty, "Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.");
-            return View(resultContactDto);
+            var errorModel = new AboutViewModel
+            {
+                ResultContacts = new List<ResultContactDto> { resultContactDto }
+                // Diğer özellikleri de gerektiği gibi başlatın
+            };
+            return View(errorModel);
         }
+
     }
 }

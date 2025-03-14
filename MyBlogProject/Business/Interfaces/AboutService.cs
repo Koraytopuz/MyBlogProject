@@ -28,6 +28,16 @@ namespace MyBlogProject.Business.Interfaces
                 existingAbout.Title = About.Title;
                 existingAbout.Description = About.Description;
                 existingAbout.Details = About.Details;
+                existingAbout.Birthday = About.Birthday;
+                existingAbout.Age = About.Age;
+                existingAbout.Email = About.Email;
+                existingAbout.Phone = About.Phone;
+                existingAbout.Location = About.Location;
+                existingAbout.Degree = About.Degree;
+                existingAbout.WebUrl = About.WebUrl;
+                existingAbout.ImageUrl = About.ImageUrl;
+                existingAbout.Status = About.Status;
+
                 await _aboutRepository.UpdateAsync(existingAbout);
             }
         }

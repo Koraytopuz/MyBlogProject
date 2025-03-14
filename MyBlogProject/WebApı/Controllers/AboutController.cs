@@ -4,6 +4,7 @@ using MyBlogProject.Business.Interfaces;
 using MyBlogProject.Business.Services;
 using MyBlogProject.Entities;
 using MyBlogProject.WebApı.Dtos.AboutDtos;
+using MyBlogProject.WebApı.Dtos.SocialMediaDtos;
 
 namespace MyBlogProject.WebApi.Controllers
 {
@@ -54,11 +55,7 @@ namespace MyBlogProject.WebApi.Controllers
             if (id != aboutDto.AboutId)
                 return BadRequest("About ID mismatch");
 
-            var existingAbout = await _aboutService.GetAboutByIdAsync(id);
-            if (existingAbout == null)
-                return NotFound($"ID'si {id} olan About bulunamadı.");
-
-            var about = _mapper.Map(aboutDto, existingAbout);
+            var about = _mapper.Map<About>(aboutDto);
             await _aboutService.UpdateAboutAsync(about);
             return Ok("About Updated Successfully");
         }

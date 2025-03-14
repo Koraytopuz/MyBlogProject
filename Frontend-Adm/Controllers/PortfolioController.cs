@@ -1,9 +1,8 @@
 ﻿using Frontend_Adm.Models;
 using Microsoft.AspNetCore.Mvc;
+using MyBlogProject.WebApı.Dtos.PortfolioDetailDtos;
 using MyBlogProject.WebApı.Dtos.PortfolioDtos;
 using Newtonsoft.Json;
-using System.Net.Http;
-using System.Text;
 
 namespace Frontend_Adm.Controllers
 {
@@ -19,60 +18,47 @@ namespace Frontend_Adm.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var client = _httpClientFactory.CreateClient();
-            var portfolioResponse = await client.GetAsync("http://localhost:5276/api/Portfolio");
-            var portfolioList = new List<ResultPortfolioDto>();
 
-            if (portfolioResponse.IsSuccessStatusCode)
+            var client = _httpClientFactory.CreateClient();
+            var portfolioDetailResponse = await client.GetAsync($"http://localhost:5276/api/PortfolioDetail/");
+            var portfolioDetailList = new List<ResultPortfolioDetailDto>();
+
+            if (portfolioDetailResponse.IsSuccessStatusCode)
             {
-                var jsonData = await portfolioResponse.Content.ReadAsStringAsync();
-                portfolioList = JsonConvert.DeserializeObject<List<ResultPortfolioDto>>(jsonData);
+                var jsonData = await portfolioDetailResponse.Content.ReadAsStringAsync();
+                portfolioDetailList = JsonConvert.DeserializeObject<List<ResultPortfolioDetailDto>>(jsonData);
             }
 
             var viewModel = new PortfolioViewModel
             {
-                PortfolioList = portfolioList
+                PortfolioDetailList = portfolioDetailList
             };
 
             return View(viewModel);
         }
+        
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> PortfolioDetail(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"http://localhost:5276/api/Portfolio/{id}");
-            if (!response.IsSuccessStatusCode)
+            var portfolioDetailResponse = await client.GetAsync($"http://localhost:5276/api/PortfolioDetail/{id}");
+            var portfolioDetailList = new List<ResultPortfolioDetailDto>();
+
+            if (portfolioDetailResponse.IsSuccessStatusCode)
             {
-                return NotFound();
+                var jsonData = await portfolioDetailResponse.Content.ReadAsStringAsync();
+                portfolioDetailList = JsonConvert.DeserializeObject<List<ResultPortfolioDetailDto>>(jsonData);
             }
 
-            var jsonData = await response.Content.ReadAsStringAsync();
-            var portfolio = JsonConvert.DeserializeObject<ResultPortfolioDto>(jsonData);
-
-            return View(portfolio);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(ResultPortfolioDto portfolio)
-        {
-            if (!ModelState.IsValid)
+            var viewModel = new PortfolioViewModel
             {
-                return View(portfolio);
-            }
+                PortfolioDetailList = portfolioDetailList
+            };
 
-            var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(portfolio);
-            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var response = await client.PutAsync($"http://localhost:5276/api/Portfolio/{portfolio.PortfolioId}", content);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                return View(portfolio);
-            }
-
-            return RedirectToAction(nameof(Index));
+            return View(viewModel);
         }
     }
 }
+
 
